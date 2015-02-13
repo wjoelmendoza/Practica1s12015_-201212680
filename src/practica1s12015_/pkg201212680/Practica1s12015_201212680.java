@@ -6,6 +6,7 @@
 
 package practica1s12015_.pkg201212680;
 
+import com.estructuras.*;
 /**
  *
  * @author Walter Mendoza
@@ -17,6 +18,25 @@ public class Practica1s12015_201212680 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Pila<String>  cola = new Pila<>();
+        
+        cola.push("Primero");
+        cola.push("Segundo");
+        cola.push("Tercero");
+        
+        
+      //  for (int i = 0 ;i < cola.getSize();i++)
+        while(!cola.vacia())
+        {
+            System.out.println(cola.pop());
+        }
+        
+        System.out.print(cola.getSize());
+        
+        if (cola.vacia())
+            System.out.print("Vacia");
+        else
+            System.out.print("con elementos");
     }
     
 }
