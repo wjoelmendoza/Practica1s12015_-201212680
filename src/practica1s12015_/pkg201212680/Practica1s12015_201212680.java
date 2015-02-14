@@ -7,6 +7,7 @@
 package practica1s12015_.pkg201212680;
 
 import com.estructuras.*;
+import com.gui.Inicio;
 /**
  *
  * @author Walter Mendoza
@@ -31,12 +32,19 @@ public class Practica1s12015_201212680 {
             System.out.println(cola.pop());
         }
         
-        System.out.print(cola.getSize());
+        System.out.println(cola.getSize());
         
         if (cola.vacia())
-            System.out.print("Vacia");
+            System.out.println("Vacia");
         else
-            System.out.print("con elementos");
+            System.out.println("con elementos");
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Inicio().setVisible(true);
+            }
+        });
     }
     
 }
