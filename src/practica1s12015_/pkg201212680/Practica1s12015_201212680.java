@@ -7,7 +7,7 @@
 package practica1s12015_.pkg201212680;
 
 import com.estructuras.*;
-import com.gui.Inicio;
+import com.gui.Tablero;
 /**
  *
  * @author Walter Mendoza
@@ -19,30 +19,34 @@ public class Practica1s12015_201212680 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Pila<String>  cola = new Pila<>();
+       /* Lista<String>  cola = new Lista<>();
         
-        cola.push("Primero");
-        cola.push("Segundo");
-        cola.push("Tercero");
-        
-        
+        cola.agregar("Primero");
+        cola.agregar("Segundo");
+        cola.agregar("Tercero");
+        cola.printA();
+        cola.printD();*/
+        /*
       //  for (int i = 0 ;i < cola.getSize();i++)
         while(!cola.vacia())
         {
             System.out.println(cola.pop());
         }
         
-        System.out.println(cola.getSize());
-        
+        System.out.println(cola.getSize());*/
+       /*
         if (cola.vacia())
             System.out.println("Vacia");
         else
             System.out.println("con elementos");
+        */
+        MatrizOrtogonal mo = new MatrizOrtogonal(10,10);
+        mo.print();
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Inicio().setVisible(true);
+                new Tablero().setVisible(true);
             }
         });
     }
