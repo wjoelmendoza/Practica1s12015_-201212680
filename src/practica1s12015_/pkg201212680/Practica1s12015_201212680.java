@@ -7,7 +7,9 @@
 package practica1s12015_.pkg201212680;
 
 import com.estructuras.*;
-import com.gui.Tablero;
+//import com.gui.Tablero;
+import com.graphViz.GraphViz;
+import java.io.File;
 /**
  *
  * @author Walter Mendoza
@@ -19,13 +21,17 @@ public class Practica1s12015_201212680 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       /* Lista<String>  cola = new Lista<>();
+        Pila<String>  cola = new Pila<>();
         
-        cola.agregar("Primero");
-        cola.agregar("Segundo");
-        cola.agregar("Tercero");
-        cola.printA();
-        cola.printD();*/
+        cola.push("Primero");
+        cola.push("Segundo");
+        cola.push("Tercero");
+        cola.push("Cuarto");
+        
+        File ext= new File("pila.gif");
+        GraphViz g = cola.grafiacar();
+        g.writeGraphToFile(g.getGraph(g.getDotSource(), "gif"), ext);
+       // cola.printD();*/
         /*
       //  for (int i = 0 ;i < cola.getSize();i++)
         while(!cola.vacia())
@@ -40,15 +46,15 @@ public class Practica1s12015_201212680 {
         else
             System.out.println("con elementos");
         */
-        MatrizOrtogonal mo = new MatrizOrtogonal(10,10);
-        mo.print();
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new Tablero().setVisible(true);
             }
         });
+        */
+        //GraphViz a= new GraphViz();
     }
     
 }
