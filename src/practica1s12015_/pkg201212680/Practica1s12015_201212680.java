@@ -21,17 +21,15 @@ public class Practica1s12015_201212680 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Pila<String>  cola = new Pila<>();
+        Cola<String>  cola = new Cola<>();
         
-        cola.push("Primero");
-        cola.push("Segundo");
-        cola.push("Tercero");
-        cola.push("Cuarto");
-        
-        File ext= new File("pila.gif");
-        GraphViz g = cola.grafiacar();
-        g.writeGraphToFile(g.getGraph(g.getDotSource(), "gif"), ext);
-       // cola.printD();*/
+        cola.agregar("Primero");
+        cola.agregar("Segundo");
+        cola.agregar("Tercero");
+        cola.agregar("Cuarto");
+       
+        cola.graficar();
+        //cola.printD();
         /*
       //  for (int i = 0 ;i < cola.getSize();i++)
         while(!cola.vacia())

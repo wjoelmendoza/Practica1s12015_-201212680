@@ -6,6 +6,9 @@
 
 package com.estructuras;
 
+import com.graphViz.GraphViz;
+import java.io.File;
+
 /**
  *
  * @author Walter Mendoza
@@ -30,7 +33,7 @@ public class Lista <T>{
         
         if(origen!=null)
         {
-            System.out.println("Agregando?");
+            
             fin.setSiguiente(aux);
             aux.setAnterior(fin);
             fin = aux;
@@ -91,5 +94,53 @@ public class Lista <T>{
             System.out.println(aux.getInfo());
             aux= aux.getAnterior();
         }
+    }
+    
+    public void graficar()
+    {
+        GraphViz gv = new GraphViz();
+        gv.addln(gv.start_graph());
+        gv.addln("rankdir = LR;");
+        
+        int i =0;
+        NodoLD<T> aux=origen;
+        
+        if(aux!=null)
+        {
+            gv.addln("top[label= \"" + origen.getInfo().toString() + "\"];");
+            aux =aux.getSiguiente();
+            while(aux!=null)
+            {
+                gv.addln("n" + i +"[label=\""+aux.getInfo().toString()+"\"];");
+                i++;
+                aux=aux.getSiguiente();
+            }
+            
+            i=0;
+            aux = origen.getSiguiente();
+            gv.add("top");
+            
+            while(aux!=null)
+            {
+                gv.add("->n"+i);
+                i++;
+                aux=aux.getSiguiente();
+                
+            }
+            
+            gv.add(";");
+            i--;
+            while(i>=0)
+            {
+                gv.add("n"+i +"->");
+                i--;
+            }
+            gv.addln("top;");
+        }
+        gv.addln(gv.end_graph());
+        
+        File ext = new File("listaDoble.gif");
+        
+        gv.writeGraphToFile(gv.getGraph(gv.getDotSource(),"gif"), ext);
     }
 }
