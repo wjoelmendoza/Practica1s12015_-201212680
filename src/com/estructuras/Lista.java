@@ -72,6 +72,23 @@ public class Lista <T>{
         return size;
     }
     
+    public T getElemento(int posicion)
+    {
+        NodoLD<T> aux= origen;
+        T aux2=null;
+        for(int i =0;i<size;i++)
+        {
+            if(posicion ==i){
+                aux2 = aux.getInfo();
+            }
+            
+            aux = aux.getSiguiente();
+        }
+        
+        
+        return aux2;
+    }
+    
     /**
      * recorrere hacia delante
      */
@@ -96,7 +113,7 @@ public class Lista <T>{
         }
     }
     
-    public void graficar()
+    public void graficar(String nombre)
     {
         GraphViz gv = new GraphViz();
         gv.addln(gv.start_graph());
@@ -139,7 +156,7 @@ public class Lista <T>{
         }
         gv.addln(gv.end_graph());
         
-        File ext = new File("listaDoble.gif");
+        File ext = new File(nombre+".gif");
         
         gv.writeGraphToFile(gv.getGraph(gv.getDotSource(),"gif"), ext);
     }

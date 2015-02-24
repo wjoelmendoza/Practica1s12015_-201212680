@@ -8,21 +8,43 @@ package com.estructuras;
 
 import com.graphViz.GraphViz;
 import java.io.File;
+import java.util.Random;
 
 /**
  *
  * @author Walter Mendoza
  */
-public class Cola <T> {
+public class Cola  extends Thread {
     
-    private NodoL< T > origen;
-    private NodoL<T> fin;
+    private NodoL<Personaje > origen;
+    private NodoL<Personaje> fin;
     private int size;
+    private int cantidad,repeticion;
+    private final Random ra = new Random();
+    private Lista<Personaje> catalogo;
     
-    public Cola()
+    public Cola(Lista<Personaje> catalogo, int cantidad)
     {
         origen = fin = null;
         size =0;
+        this.cantidad=cantidad;
+        repeticion=0;
+        this.catalogo=catalogo;
+        iniciarCola();
+    }
+    
+    private void iniciarCola()
+    {
+        for(int i =0; i<5;i++)
+            getPersonaje();
+        repeticion =5;
+    }
+    
+    private void getPersonaje()
+    {
+        int num = ra.nextInt(catalogo.size());
+        Personaje aux = catalogo.getElemento(num).clone();
+        this.agregar(aux);
     }
     
     public boolean vacia()
@@ -30,10 +52,10 @@ public class Cola <T> {
         return origen==null;
     }
     
-    public void agregar(T t)
+    public void agregar(Personaje personaje)
     {
         size ++;
-        NodoL<T> nuevo = new NodoL<>(t);
+        NodoL<Personaje> nuevo = new NodoL<>(personaje);
         if(origen!=null)
         {
             fin.setSiguiguiente(nuevo);
@@ -47,8 +69,8 @@ public class Cola <T> {
     
    
     
-    public T getElemento(){
-        T aux = origen.getElemento();
+    public Personaje getElemento(){
+        Personaje aux = origen.getElemento();
         size --;
         
         origen = origen.getSiguiente();
@@ -67,7 +89,7 @@ public class Cola <T> {
         gv.addln(gv.start_graph());
         gv.addln("rankdir=LR;");
         int i =0;
-        NodoL<T> aux = origen;
+        NodoL<Personaje> aux = origen;
         if(aux!=null)
         {
             gv.addln("top [ label =\""+aux.getElemento().toString()+"\"];");
@@ -96,6 +118,29 @@ public class Cola <T> {
             
             File ext = new File("cola.gif");
             gv.writeGraphToFile(gv.getGraph(gv.getDotSource(), "gif"), ext);
+        }
+    }
+
+    @Override
+    public void run() {
+        for(;repeticion<cantidad;repeticion++)
+        {
+            esperar(5);
+            getPersonaje();
+            System.out.println(repeticion +"Cola");
+            //quitar instruccion antes de entregar
+            graficar();
+        }
+    }
+    
+    private void esperar(int seg)
+    {
+        try{
+            Thread.sleep(seg*1000);
+        }catch(InterruptedException iE)
+        {
+            Thread.currentThread().interrupt();
+            System.err.println(iE.toString());
         }
     }
 }

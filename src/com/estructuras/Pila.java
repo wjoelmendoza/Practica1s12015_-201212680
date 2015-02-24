@@ -6,22 +6,46 @@
 
 package com.estructuras;
 import com.graphViz.GraphViz;
+import java.io.File;
+import java.util.Random;
 
 /**
  *
  * @author Walter Mendoza
  */
-public class Pila <T>{
+public class Pila extends Thread{
    
    private GraphViz gr;
-   private NodoL<T> origen;
-   private NodoL<T> fin;
+   private NodoL<Personaje> origen;
+   private NodoL<Personaje> fin;
+   private Lista<Personaje> zombies;
    private int size;
+   private int cantidad, repeticion;
+   private final Random ra = new Random();
     
-   public Pila()
+   public Pila(Lista<Personaje> zombies, int cantidad)
    {
        origen = fin = null;
        size=0;
+       this.cantidad=cantidad;
+       this.zombies=zombies;
+       iniciarPila();
+   }
+   
+   private void iniciarPila()
+   {
+       for (int i =0;i<5 ; i++)
+       {
+           getElemento();
+       }
+       repeticion =5;
+   }
+   
+   private void getElemento()
+   {
+       int pos = ra.nextInt(zombies.size());
+       Personaje aux = zombies.getElemento(pos).clone();
+       push(aux);
    }
    
    public boolean vacia()
@@ -29,10 +53,10 @@ public class Pila <T>{
        return origen ==null;
    }
    
-   public void push(T elemento)
+   public void push(Personaje elemento)
    {
        size++;
-       NodoL<T> nuevo = new NodoL<>(elemento);
+       NodoL<Personaje> nuevo = new NodoL<>(elemento);
        if(origen!=null)
        {
            nuevo.setSiguiguiente(origen);
@@ -44,10 +68,10 @@ public class Pila <T>{
        }
    }
    
-   public T pop()
+   public Personaje pop()
    {
        size--;
-       T aux;
+       Personaje aux;
        aux = origen.getElemento();
        
        origen = origen.getSiguiente();
@@ -60,18 +84,18 @@ public class Pila <T>{
        return size;
    }
    
-   public GraphViz grafiacar()
+   public void graficar()
    {
        gr = new GraphViz();
        gr.addln(gr.start_graph());
-       gr.addln("rankdir = LR");
-       NodoL<T> aux1=origen;
+       gr.addln("rankdir = TB");
+       NodoL<Personaje> aux1=origen;
        int i=0;
        
        if(aux1!=null)
        {
            
-           gr.addln("top[label =\""+origen.getElemento().toString()+"\"];");
+           gr.addln("top[label =\""+origen.getElemento().toString()+"\",color=blue];");
            aux1=aux1.getSiguiente();
            while(aux1!=null)
            {
@@ -87,7 +111,7 @@ public class Pila <T>{
            
            while(aux1!=null)
            {
-               gr.add(" -> n" +i);
+               gr.add("->n" +i);
                i++;
                aux1= aux1.getSiguiente();
            }
@@ -95,6 +119,37 @@ public class Pila <T>{
        gr.addln(";");
        gr.addln(gr.end_graph());
        
-       return gr;
+       File ext= new File("Pila.gif");
+       gr.writeGraphToFile(gr.getGraph(gr.getDotSource(), "gif"), ext);
    }
+
+    @Override
+    public void run() {
+        for (;repeticion<cantidad;repeticion++)
+        {
+            esperar(5);
+            getElemento();
+            //quitar codigo antes de entregar
+            System.out.println(repeticion +"Pila");
+            graficar();
+        }
+    }
+    
+    public void graficar2()
+    {
+        GraphViz gv = new GraphViz();
+        gv.addln();
+    }
+    private void esperar(int seg)
+    {
+        try{
+            Thread.sleep(seg*1000);
+        }catch(InterruptedException iE)
+        {
+            Thread.currentThread().interrupt();
+            System.err.println(iE.toString());
+        }
+    }
+   
+   
 }

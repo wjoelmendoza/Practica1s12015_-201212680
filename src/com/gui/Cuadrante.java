@@ -22,7 +22,6 @@ public class Cuadrante extends JLabel implements Runnable {
         this.dato=dato;
         this.setText(dato);
         
-        System.out.println(y*20 + 40);
         this.setBounds(x*60 + 60, y*60+20,x*20+60, y*60+100);
         //this.setBounds(null);
         this.x=x;
@@ -38,5 +37,11 @@ public class Cuadrante extends JLabel implements Runnable {
     public int getYm(){return y;}
     
     public String getDato(){return dato;}
+    
+    @Override
+    public String toString()
+    {
+        return dato;
+    }
     
 }

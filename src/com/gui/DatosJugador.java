@@ -127,13 +127,11 @@ public class DatosJugador extends javax.swing.JDialog {
      
         if(EConstantes.PLANTAS.getValue()==tipo)
         {
-            jugador.addDatoP(nombre);
-            jugador.addDatoP(cantidad);
+            
         }
         else if(EConstantes.ZOMBIES.getValue()==tipo)
         {
-            jugador.addDatoZ(nombre);
-            jugador.addDatoZ(cantidad);
+           
         }else
             System.out.println("No deberia entrar hasta aca buscar error de asignacion");
         return true;

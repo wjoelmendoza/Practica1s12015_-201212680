@@ -5,21 +5,30 @@
  */
 
 package com.gui;
+import com.estructuras.Cola;
+import com.estructuras.Lista;
 import com.estructuras.MatrizOrtogonal;
+import com.estructuras.Personaje;
+import com.estructuras.Pila;
 
 /**
  *
  * @author Walter Mendoza
  */
 public final class Tablero extends javax.swing.JFrame {
-    private MatrizOrtogonal mo = new MatrizOrtogonal(10,10,this);
+    private MatrizOrtogonal mo = new MatrizOrtogonal(4,4,this);
+    private Pila zombie;
+    private Cola planta;
+    private Lista<Personaje> catZombie;
+    private Lista<Personaje> catPlanta;
 
     /**
      * Creates new form Tablero
      */
     public Tablero() {
         initComponents();
-        metodo();
+        
+        mo.graficar();
     }
 
     /**
@@ -31,39 +40,91 @@ public final class Tablero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMenu1.setText("Archivo");
+
+        jMenuItem6.setText("Salir Partida");
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText("Salir Juego");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu3.setText("Reporte");
+
+        jMenuItem1.setText("Catalogo");
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setText("Cola");
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Jugadores");
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setText("Matriz");
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Pila");
+        jMenu3.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 460, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    private final javax.swing.JLabel[][] algo = new javax.swing.JLabel[5][5];
- 
-    public void metodo(){
-        for(int i = 0; i<5;i++)
-        {
-            for(int j =0;j<5;j++)
-            {
-                javax.swing.JLabel nueva = new javax.swing.JLabel();
-                nueva.setText(""+i+","+j);
-                algo[i][j]=nueva;
-            }
-        }
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
         
-//       this.add(this, 12);
-    }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    
+   
+   
+        
+
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }

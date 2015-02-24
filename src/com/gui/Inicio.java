@@ -152,7 +152,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnIJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIJuegoActionPerformed
         // TODO add your handling code here:
-        jugador.printDatos();
+       
     }//GEN-LAST:event_btnIJuegoActionPerformed
 
     public Jugador getJugador()
